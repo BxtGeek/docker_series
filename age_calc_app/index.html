@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-grey': '#353535',
+                        'teal': '#3c6e71',
+                        'white': '#ffffff'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark-grey min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-8">
+        <h1 class="text-2xl font-bold mb-6 text-dark-grey text-center">
+            Age Calculator
+        </h1>
+
+        <form method="post" class="space-y-4">
+            <div>
+                <label for="birthdate" class="block text-dark-grey mb-2">
+                    Select Your Birthdate
+                </label>
+                <input 
+                    type="date" 
+                    name="birthdate" 
+                    required
+                    class="w-full p-3 border-2 border-teal rounded-md text-dark-grey focus:outline-none focus:ring-2 focus:ring-teal"
+                >
+            </div>
+
+            <button 
+                type="submit" 
+                class="w-full bg-teal text-white py-3 rounded-md hover:bg-opacity-90 transition duration-300"
+            >
+                Calculate Age
+            </button>
+        </form>
+
+        {{if .Error}}
+            <div class="mt-6 text-center text-red-500 font-semibold">
+                {{.Error}}
+            </div>
+        {{else if .Years}}
+            <div class="mt-6 text-center">
+                <p class="text-dark-grey">Your Age:</p>
+                <p class="text-xl text-teal font-bold">
+                    {{.Years}} years, {{.Months}} months, {{.Days}} days
+                </p>
+            </div>
+        {{end}}
+    </div>
+</body>
+</html>
